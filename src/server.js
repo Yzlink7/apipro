@@ -16,6 +16,8 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan("combined"));
 
+const users = require("./db.json");
+
 app.get("/request", (req, res) => {
   const username = req.query.username;
 
@@ -28,7 +30,7 @@ app.get("/request", (req, res) => {
 });
 
 app.get("/users", isAuth, (_, res) => {
-  res.status(200).json("ok users");
+  res.status(200).json(users);
 });
 
 app.get("/", (_, res) =>
